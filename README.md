@@ -8,14 +8,22 @@ In your initializer:
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :twenty_three_and_me, ENV['23ANDME_KEY'], ENV['23ANDME_SECRET'], scope: 'basic genomes'
+  provider :twenty_three_and_me, {
+    ENV['23ANDME_KEY'],
+    ENV['23ANDME_SECRET'],
+    scope: 'basic genomes'
+  }
 end
 ```
 
 Or, if you're using Devise, in your `Devise.setup`:
 
 ```ruby
-config.omniauth :twenty_three_and_me, ENV['23ANDME_KEY'], ENV['23ANDME_SECRET'], :scope => 'basic genomes'
+config.omniauth :twenty_three_and_me, {
+  ENV['23ANDME_KEY'],
+  ENV['23ANDME_SECRET'],
+  scope: 'basic genomes'
+}
 ```
 
 The 23andMe API requires setting scopes for accessing different sorts of data. The "basic" one doesn't get you very far, "genomes" gets you the whole thing. More on scopes [here](https://api.23andme.com/docs/authentication/#scopes).
