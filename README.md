@@ -6,11 +6,19 @@ Unofficial OmniAuth strategy for [23andMe](https://www.23andme.com/).
 
 In your initializer:
 
-    Rails.application.config.middleware.use OmniAuth::Builder do
-      provider :twenty_three_and_me, ENV['23ANDME_KEY'], ENV['23ANDME_SECRET'], scope: 'basic,genomes'
-    end
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :twenty_three_and_me, ENV['23ANDME_KEY'], ENV['23ANDME_SECRET'], scope: 'basic genomes'
+end
+```
 
-The 23andMe API requires setting scopes for accessing different sorts of data. The "basic" on doesn't get you very far, "genomes" gets you the whole thing. More on scopes [here](https://api.23andme.com/docs/authentication/#scopes).
+Or, if you're using Devise, in your `Devise.setup`:
+
+```ruby
+config.omniauth :twenty_three_and_me, ENV['23ANDME_KEY'], ENV['23ANDME_SECRET'], :scope => 'basic genomes'
+```
+
+The 23andMe API requires setting scopes for accessing different sorts of data. The "basic" one doesn't get you very far, "genomes" gets you the whole thing. More on scopes [here](https://api.23andme.com/docs/authentication/#scopes).
 
 ## Credits
 
