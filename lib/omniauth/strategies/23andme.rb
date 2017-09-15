@@ -24,6 +24,10 @@ module OmniAuth
         end
       end
 
+      def query_string
+        ''
+      end
+
       uid { raw_info['id'].to_s }
 
       info do
