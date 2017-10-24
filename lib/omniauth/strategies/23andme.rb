@@ -9,7 +9,7 @@ module OmniAuth
         :authorize_url => 'https://api.23andme.com/authorize',
         :token_url => 'https://api.23andme.com/token'
       }
-      option :authorize_params, {grant_type: 'authorization_code'}
+      option :authorize_params, {grant_type: 'authorization_code', select_profile: true}
 
       def request_phase
         puts authorize_params
@@ -20,6 +20,10 @@ module OmniAuth
         super.tap do |params|
           if request.params['scope']
             params[:scope] = request.params['scope']
+          end
+
+          if request.params['select_profile']
+            params[:select_profile] = request.params['select_profile']
           end
         end
       end
